@@ -182,8 +182,7 @@ Bu proje şu alanlarda geliştirilebilir:
 - **Bulut Entegrasyonu**:
     - Veriler bulut üzerinde depolanarak daha geniş bir analiz platformu oluşturulabilir.
 ---
-<br>
----
+
 # Smart Greenhouse System
 
 ## About the Project
