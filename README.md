@@ -1,3 +1,4 @@
+
  
 # Akıllı Sera Sistemi 
 
@@ -121,32 +122,37 @@ Akıllı Sera Sistemi, beş ana işlevden oluşur:
 
     **Grafik Kısmı İçin:**
     ```python
-    try:
+    try:  
        #Main kodları
-    except ValueError:#hatalı seçim için
-        print("Hatalı giriş yaptınız, lütfen bir sayı girin!"),
-    except Exception as hata:# genel hata kontrolü için
-        print(f"Bir hata oluştu: {hata}")
-    ```
-    **Gömülü yazılım İçin:**
-    ```python
-
-    try:
-	    #SD kart bağlantı kontrolü
-	except Exception as e:#İşletim sistemi hata kontrolü
-        print(f"SD kart bulunamadı:{e}")
-    try:
-	    #dosya kontrolü
-	except OSError as hata:#İşletim sistemi hata kontrolü
-        print(f"Bir hata oluştu: {hata}")
-    try:
-       #Main kodları
-     except ValueError:#hatalı girdi seçimi kontrolü
+    except ValueError:#hatalı girdi seçimi kontrolü
         print("Hatalı giriş yaptınız, lütfen bir sayı girin!")
     except KeyError as e:#Veri sütun hata kontrolü
         print(f"Veri sütunu bulunamadı: {e}")
     except Exception as hata:# genel hata kontrolü 
         print(f"Bir hata oluştu: {hata}")
+    ```
+    **Gömülü yazılım İçin:**
+    ```python
+    try:
+	    # SD kart kurulumu
+	except Exception as e:#Sd kart yapılandırma kontrolü 
+        print("SD kart montaj hatası:", e)
+    try:
+	    #SD kart bağlantı kontrolü
+	except Exception as e:#İşletim sistemi hata kontrolü
+        print(f"SD kart bulunamadı:{e}")
+        
+    try:
+	    #veri seti dosyası kontrolü
+	except OSError as hata:#eksik dosya hatası
+		#Yeniveri setinin oluşturulması
+        
+    try:
+       #Main kodları
+    except Exception as hata:# genel hata kontrolü için
+	    #Hatanın errors.log dosyasıına kaydedilmesi
+        print(f"Bir hata oluştu: {hata}")
+    
     ```
 
 5. **Kurulum**
@@ -297,50 +303,39 @@ The Smart Greenhouse System consists of five main functions:
 
 4. **Error Handling Mechanisms**:
     Try/except blocks are used in the code to catch user errors and unexpected situations. This way, if an unexpected input is received from the user or an error occurs while reading data, the program informs the user and continues safely.
-
-    **For the Graph Section:**
+    
+    **For the Graphics Section:**
     ```python
-    try:
-       # Main code
-    except ValueError: # for invalid selection
-        print("Invalid input, please enter a number!")
-    except Exception as error: # for general error handling
-        print(f"An error occurred: {error}")
-    ```
-    **For Embedded Software:**
-    ```python
-    try:
-        # SD card connection check
-    except Exception as e: # Operating system error handling
-        print(f"SD card not found: {e}")
-    try:
-        # File check
-    except OSError as error: # Operating system error handling
-        print(f"An error occurred: {error}")
-    try:
-       # Main code
-    except ValueError: # for invalid input selection
-        print("Invalid input, please enter a number!")
-    except KeyError as e: # Data column error handling
-        print(f"Data column not found: {e}")
-    except Exception as error: # general error handling
-        print(f"An error occurred: {error}")
-    ```
-
-5. **Setup**
-    ```bash
-    git clone https://github.com/mrdedektif/Greenhouse-statistics.git
-    ```
-
-6. **Usage**:
-     - Creating the `data.csv` dataset by collecting data with Raspberry Pi Pico:
-	      ```bash     
-          seraData.py
-	      ```
-    - Visualizing the collected data:
-      ```bash
-      Seragrafik.py
-      ```
+    try:  
+    #Main code
+    except ValueError: #invalid input selection control  
+	    print("Invalid input, please enter a number!")
+	except KeyError as e: #Data column error control
+	    print(f"Data column not found: {e}")
+	except Exception as error: #general error control
+	    print(f"An error occurred: {error}")
+	```
+	**For Embedded Software:**
+	```python
+	try:
+	    # SD card setup
+	except Exception as e: #SD card configuration control
+	    print("SD card mount error:", e)
+	try:
+		#SD card connection control
+	except Exception as e: #Operating system error control
+		    print(f"SD card not found:{e}")
+	try:
+	    #dataset file control
+	except OSError as error: #missing file error
+		#Creation of a new dataset
+		
+	try:
+		#Main code
+	except Exception as error: #for general error control
+	    #Saving the error to errors.log file
+	    print(f"An error occurred: {error}")
+	```
 
 ---
 
